@@ -5,35 +5,36 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-   private static Scanner scanner = new Scanner(System.in);
+   private static final Scanner scanner = new Scanner(System.in);
 
    public static void main(String[] args) {
-      twoDimensionalArray_1();
-      twoDimensionalArray_2();
-      twoDimensionalArray_3();
-      twoDimensionalArraysCompare();
+//      twoDimensionalArray_1();
+//      twoDimensionalArray_2();
+//      twoDimensionalArray_3();
+//      twoDimensionalArraysCompare();
 
-      threeDimensionalArray_1();
-      threeDimensionalArray_2();
-
-      fourDimensionalArray_1();
-      fourDimensionalArray_2();
-
-      jaggedArray_1();
-      jaggedArray_2();
-
-      int [][] array2D = ArrayFill(3,5, 7);
-
-      randomArray();
-      quickSort();
-      arrayClone();
-
-      libraryExample();
-//-----------------------
-      lessonWork1();
-      lessonWork4();
-      homeworkExample1();
-      homeworkExample2();
+//      threeDimensionalArray_1();
+//      threeDimensionalArray_2();
+//
+//      fourDimensionalArray_1();
+//      fourDimensionalArray_2();
+//
+//      jaggedArray_1();
+//      jaggedArray_2();
+//
+//      int [][] array2D = ArrayFill(4,12, 7);
+//
+//      randomArray();
+//      quickSort();
+//      arrayClone();
+//
+//      libraryExample();
+////-----------------------
+//      lessonWork1();
+//      lessonWork4();
+      lessonWork6();
+//      homeworkExample1();
+//      homeworkExample2();
    }
 
    private static void lessonWork1() {
@@ -105,6 +106,54 @@ public class Main {
       }
    }
 
+   private static void lessonWork6() {
+      /*
+      Дан Двумерный массив целых чисел. В каждом его столбце найти:
+      а) сумму нечетных элементов;
+      б) количество положительных элементов;
+      в) количество элементов, кратных а или b.
+       */
+
+      final int COLUMNS = 5;
+      final int ROWS = 4;
+
+      int[][] arr2D = new int[ROWS][];
+      int[] results = new int[COLUMNS];
+      for (int row = 0; row < arr2D.length; row++) {
+         arr2D[row] = new int[COLUMNS];
+         for (int column = 0; column < arr2D[row].length; column++) {
+            arr2D[row][column] = 5 - (int) (Math.random() * 10);
+            System.out.print(arr2D[row][column] + "\t");
+         }
+         System.out.println();
+      }
+
+      int[] sum = new int[COLUMNS];
+      int[] positivesQuantity = new int[COLUMNS];
+      int a = 3, b = 2;
+      int[] a_or_b_modulo_Quantity = new int[COLUMNS];
+
+      for (int column = 0; column < arr2D[0].length; column++) {
+         for (int row = 0; row < arr2D.length; row++) {
+            /* a */
+            if (arr2D[row][column] % 2 == 1)
+               sum[column] += arr2D[row][column];
+            /* b */
+            if (arr2D[row][column] > 0)
+               positivesQuantity[column]++;
+            /* c */
+            if (arr2D[row][column] % a == 0 || arr2D[row][column] % b == 0)
+               a_or_b_modulo_Quantity[column]++;
+         }
+      }
+
+      System.out.println("Sums of even elements: " + Arrays.toString(sum));
+      System.out.println("Quantity of positive elements: " + Arrays.toString(positivesQuantity));
+      System.out.println("Element dividng by " + a + " or " + b + " : " + Arrays.toString(a_or_b_modulo_Quantity));
+
+   }
+
+
    private static void lessonWork4() {
         /*Задан Двумерный массив вещественных чисел. Найти:
         а) максимальную сумму абсолютных значений
@@ -155,6 +204,7 @@ public class Main {
       }
       System.out.println("Max in Cols= " + sumsCols[indMaxcols] + ", at: " + indMaxcols);
    }
+
 
    // Двумерные массивы. Пример 1
    private static void twoDimensionalArray_1() {
@@ -527,7 +577,7 @@ public class Main {
             flat[ctr++] = num[row][col];
          }
       }
-
+      System.out.println(Arrays.toString(flat));
       // Сортируем одномерный массив
       Arrays.sort(flat);
 
