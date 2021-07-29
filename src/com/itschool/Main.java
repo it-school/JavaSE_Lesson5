@@ -32,9 +32,43 @@ public class Main {
 ////-----------------------
 //      lessonWork1();
 //      lessonWork4();
-      lessonWork6();
+//      lessonWork6();
 //      homeworkExample1();
 //      homeworkExample2();
+
+      classworkHard11();
+   }
+
+   private static void classworkHard11() {
+      final int R = 5, C = 18;
+      int[][] array = new int[R][C];
+      for (int r = 0; r < R; r++) {
+         for (int c = 0; c < C; c++) {
+            array[r][c] = c;// (int)(Math.random()*10);
+            System.out.printf("%5d", array[r][c]);
+         }
+         System.out.println();
+      }
+
+      int temp;
+      for (int n = 0; n < C; n++) {
+         for (int r = 0; r < R; r++) {
+            for (int c = C - 1; c > 0 + 1 + n * 2; c--) {
+               temp = array[r][c];
+               array[r][c] = array[r][c - 1];
+               array[r][c - 1] = temp;
+            }
+         }
+      }
+
+      System.out.println();
+      for (int r = 0; r < R; r++) {
+         for (int c = 0; c < C; c++) {
+            System.out.printf("%5d", array[r][c]);
+         }
+         System.out.println();
+      }
+
    }
 
    private static void lessonWork1() {
@@ -93,7 +127,7 @@ public class Main {
       printArray(array);
       double[][] clone = array.clone();
       printArray(clone);
-
+      System.out.println(Arrays.deepToString(array));
    }
 
    private static void printArray(double[][] array) {
@@ -115,7 +149,7 @@ public class Main {
        */
 
       final int COLUMNS = 5;
-      final int ROWS = 4;
+      final int ROWS = 5;
 
       int[][] arr2D = new int[ROWS][];
       int[] results = new int[COLUMNS];
@@ -150,7 +184,6 @@ public class Main {
       System.out.println("Sums of even elements: " + Arrays.toString(sum));
       System.out.println("Quantity of positive elements: " + Arrays.toString(positivesQuantity));
       System.out.println("Element dividng by " + a + " or " + b + " : " + Arrays.toString(a_or_b_modulo_Quantity));
-
    }
 
 
@@ -259,6 +292,9 @@ public class Main {
          }
          System.out.println();
       }
+
+      System.out.println();
+      System.out.println(Arrays.deepToString(array));
    }
 
    // Двумерные массивы. Пример 3
