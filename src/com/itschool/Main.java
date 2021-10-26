@@ -7,45 +7,84 @@ import java.util.Scanner;
 public class Main {
    private static final Scanner scanner = new Scanner(System.in);
 
+   public static String[] authors = {"Jack London", "William Shakespeare", "Biern Strastroup", "Herbert Wales", "Bruce Ecckel"};
+
    public static void main(String[] args) {
-      twoDimensionalArray_1();
-      twoDimensionalArray_2();
-      twoDimensionalArray_3();
-      twoDimensionalArraysCompare();
+//      twoDimensionalArray_1();
+//      twoDimensionalArray_2();
+//      twoDimensionalArray_3();
+//      twoDimensionalArraysCompare();
+//
+//      threeDimensionalArray_1();
+//      threeDimensionalArray_2();
 
-      threeDimensionalArray_1();
-      threeDimensionalArray_2();
+//      fourDimensionalArray_1();
+//      fourDimensionalArray_2();
+//
+//      jaggedArray_1();
+//      jaggedArray_2();
+//
+//
+//      int[][] array2D = ArrayFill(4, 12, 7);
+//
+//      randomArray();
+//      arrayClone();
+//      quickSort();
 
-      fourDimensionalArray_1();
-      fourDimensionalArray_2();
-
-      jaggedArray_1();
-      jaggedArray_2();
-
-      int[][] array2D = ArrayFill(4, 12, 7);
-
-      randomArray();
-      quickSort();
-      arrayClone();
-
-      libraryExample();
+//      libraryExample();
 //-----------------------
-      classWork1();
-      classWork4();
-      classWork6();
-      homeworkExample1();
-      homeworkExample2();
+//      classWork1();
+//      classWork4();
+//      classWork6();
+      classWork7();
+//      classWork11_Hard();
+//
+//      homeworkExample1();
+//      homeworkExample2();
+   }
 
-      classWork11_Hard();
+   /**
+    * Дан Двумерный массив из четного числа строк. Поменять местами первую строку со второй, третью — с четвертой и т. д.
+    */
+   private static void classWork7() {
+      final int N = 10, M = 7;
+      int[][] array = new int[N][M];
+      Random random = new Random();
+
+      for (int row = 0; row < array.length; row++) {
+         for (int column = 0; column < array[row].length; column++) {
+            array[row][column] = random.nextInt(10);
+            System.out.printf("%3d", array[row][column]);
+         }
+         System.out.println();
+      }
+
+      int temp;
+      for (int row = 0; row < array.length; row += 2) {
+//         System.out.println(Arrays.toString(array[row]));
+         for (int column = 0; column < array[row].length; column++) {
+            temp = array[row][column];
+            array[row][column] = array[row + 1][column];
+            array[row + 1][column] = temp;
+         }
+      }
+
+      System.out.println();
+      for (int row = 0; row < array.length; row++) {
+         for (int column = 0; column < array[row].length; column++) {
+            System.out.printf("%3d", array[row][column]);
+         }
+         System.out.println();
+      }
    }
 
    private static void printArray(double[][] array) {
       System.out.println();
       for (double[] row : array) {
-         for (double value : row) {
-            System.out.print(String.format("%6.1f", value));
+         for (double element : row) {
+            System.out.print(String.format("%6.2f", element));
          }
-         System.out.println('\n');
+         System.out.println();
       }
    }
 
@@ -130,11 +169,7 @@ public class Main {
    private static void twoDimensionalArraysCompare() {
       System.out.println("\nСравнение двумерных массивов");
 
-      int[][] array1 = {
-              {1, 2, 3},
-              {4, 5, 6},
-              {7, 8, 9}
-      };
+      int[][] array1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
       int[][] array2 = new int[3][3];
       // Заполнение массива
@@ -221,10 +256,10 @@ public class Main {
 
       System.out.println("Трехмерный прямоугольный массив : ");
 
-      for (int i = 0; i < 3; i++) {
-         for (int j = 0; j < 3; j++) {
-            for (int k = 0; k < 3; k++) {
-               System.out.print(array[i][j][k] + " ");
+      for (int layer = 0; layer < 3; layer++) {
+         for (int row = 0; row < 3; row++) {
+            for (int element = 0; element < 3; element++) {
+               System.out.print(array[layer][row][element] + " ");
             }
             System.out.println();
          }
@@ -255,6 +290,8 @@ public class Main {
          }
          System.out.println();
       }
+
+      System.out.println(Arrays.deepToString(array));
    }
    // Четырёхмерные массивы. Пример 1
 
@@ -416,7 +453,6 @@ public class Main {
          }
          System.out.println();
       }
-
    }
 
    private static void arrayClone() {
@@ -430,20 +466,22 @@ public class Main {
 
       printArray(array);
       double[][] clone = array.clone();
+      System.out.println("Clone");
       printArray(clone);
       System.out.println(Arrays.deepToString(array));
    }
-   // Сортировка QuickSort
 
+   // Сортировка QuickSort
    private static void quickSort() {
       System.out.println("\nСортировка двухмерного массива методом QuickSort");
       int[][] num = {
               {5, 4, 45, 12},
-              {7, 5, 8, 85}
+              {7, 5, 8, 85},
+              {0, 6, 99, 50}
       };
 
-      for (int row = 0; row < 2; row++) {
-         for (int col = 0; col < 4; col++) {
+      for (int row = 0; row < num.length; row++) {
+         for (int col = 0; col < num[row].length; col++) {
             System.out.print(num[row][col] + "\t");
          }
          System.out.println();
@@ -456,21 +494,22 @@ public class Main {
       int[] flat = new int[rows * columns];
 
       // Переписываем двухмерный массив в одномерный
-      int ctr = 0;
+      int counter = 0;
       for (int row = 0; row < rows; row++) {
          for (int col = 0; col < columns; col++) {
-            flat[ctr++] = num[row][col];
+            flat[counter++] = num[row][col];
          }
       }
       System.out.println(Arrays.toString(flat));
       // Сортируем одномерный массив
       Arrays.sort(flat);
+      System.out.println(Arrays.toString(flat));
 
       // Переписываем одномерный массив в двухмерный
-      ctr = 0;
+      counter = 0;
       for (int row = 0; row < rows; row++) {
          for (int col = 0; col < columns; col++) {
-            num[row][col] = flat[ctr++];
+            num[row][col] = flat[counter++];
          }
       }
 
@@ -487,16 +526,18 @@ public class Main {
    // Пример с книжной библиотекой
    private static void libraryExample() {
       System.out.println("\nПример с библиотекой");
-      String[][][] library = new String[2][2][2];
+      String[][][] library = new String[3][4][5];
 
       int counter = 1;
-      for (int i = 0; i < library.length; i++) {
-         for (int j = 0; j < library[i].length; j++) {
-            for (int k = 0; k < library[i][j].length; k++) {
-               String AutorName = "Автор " + counter;
-               String BookName = "Название " + counter * 2;
+      String AutorName = "";
+      String BookName = "";
+      for (int locker = 0; locker < library.length; locker++) {
+         for (int shelf = 0; shelf < library[locker].length; shelf++) {
+            for (int cell = 0; cell < library[locker][shelf].length; cell++) {
+               AutorName = authors[(int) (Math.random() * authors.length)];
+               BookName = "Название " + counter * 2;
 
-               library[i][j][k] = BookName + " (" + AutorName + ")";
+               library[locker][shelf][cell] = BookName + " (" + AutorName + ")";
                ++counter;
             }
          }
@@ -505,16 +546,15 @@ public class Main {
       for (int bookCase = 0; bookCase < library.length; bookCase++) {
          for (int shelf = 0; shelf < library[bookCase].length; shelf++) {
             for (int book = 0; book < library[bookCase][shelf].length; book++) {
-               System.out.println("Шкаф " + (bookCase + 1) + "-ый " +
-                       " Полка " + (shelf + 1) + "-ая " + "Ячейка " + (book + 1) + "-ая. Книга: " + library[bookCase][shelf][book]);
+               System.out.println("Шкаф: " + (bookCase + 1) + "-ый " +
+                       " Полка: " + (shelf + 1) + "-ая " + "Ячейка: " + (book + 1) + "-ая. Книга: " + library[bookCase][shelf][book]);
             }
          }
       }
    }
 
-
    private static void classWork1() {
-      final int ROWS = 5, COLUMNS = 5;
+      final int ROWS = 6, COLUMNS = 6;
       double[][] array = new double[ROWS][COLUMNS];
 
       Random r = new Random();
@@ -535,7 +575,21 @@ public class Main {
          }
       }
 
-      System.out.println("[" + indMaxRow + "][" + indMaxCol + "] = " + array[indMaxRow][indMaxCol]);
+      System.out.println("Max [" + indMaxRow + "][" + indMaxCol + "] = " + array[indMaxRow][indMaxCol]);
+
+      int indMinRow = 0;
+      int indMinCol = 0;
+      for (int row = 0; row < array.length; row++) {
+         for (int col = 0; col < array[row].length; col++) {
+            if (array[row][col] < array[indMinRow][indMinCol]) {
+               indMinRow = row;
+               indMinCol = col;
+            }
+         }
+      }
+
+      System.out.println("Min [" + indMinRow + "][" + indMinCol + "] = " + array[indMinRow][indMinCol]);
+
 
       for (int row = 0; row < array.length; row++) {
          for (int col = 0; col < array[row].length; col++) {
@@ -554,16 +608,13 @@ public class Main {
          }
       }
       printArray(array);
-
    }
 
 
    /**
     * Задан Двумерный массив вещественных чисел. Найти:
-    * а) максимальную сумму абсолютных значений
-    * элементов по строкам и номер строки с такой суммой;
-    * б) максимальную сумму абсолютных значений
-    * элементов по столбцам и номер столбца с такой суммой.
+    * а) максимальную сумму абсолютных значений (модулей) элементов по строкам и номер строки с такой суммой;
+    * б) максимальную сумму абсолютных значений (модулей) элементов по столбцам и номер столбца с такой суммой.
     */
    private static void classWork4() {
       final int ROWS = 4, COLUMNS = 5;
@@ -572,11 +623,12 @@ public class Main {
       Random r = new Random();
       for (int row = 0; row < ROWS; row++)
          for (int cols = 0; cols < COLUMNS; cols++)
-            array[row][cols] = 50 - r.nextDouble() * 100;
+            array[row][cols] = 5 - r.nextDouble() * 10;
 
-      for (double[] a : array)
+      printArray(array);
+/*      for (double[] a : array)
          System.out.println(Arrays.toString(a));
-
+ */
       double[] sumsRows = new double[ROWS];
 
       for (int row = 0; row < ROWS; row++)
@@ -586,7 +638,7 @@ public class Main {
       System.out.println(Arrays.toString(sumsRows));
 
       int indMax = 0;
-      for (int i = 0; i < sumsRows.length; i++) {
+      for (int i = 1; i < sumsRows.length; i++) {
          if (sumsRows[i] > sumsRows[indMax])
             indMax = i;
       }
