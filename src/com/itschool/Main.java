@@ -125,11 +125,7 @@ public class Main {
    private static void twoDimensionalArray_3() {
       System.out.println("\nДвумерный массив. Пример 3");
       // Компилятор определяет размер массива на основании выражения инициализации.
-      int[][] array = {
-              {0, 1, 2, 3},
-              {4, 5, 6, 7},
-              {8, 9, 0, 1}
-      };
+      int[][] array = {{0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 0, 1}};
 
       System.out.println("Двумерный прямоугольный массив : ");
       for (int i = 0; i < array.length; i++) {
@@ -162,10 +158,8 @@ public class Main {
       for (int[] a : array2)
          System.out.println(Arrays.toString(a));
 
-      if (Arrays.equals(array1, array2))
-         System.out.println("Массивы равны!");
-      else
-         System.out.println("Массивы не равны!");
+      if (Arrays.equals(array1, array2)) System.out.println("Массивы равны!");
+      else System.out.println("Массивы не равны!");
 
 
       System.out.println("Клонируем содержимое одного массива:");
@@ -182,16 +176,12 @@ public class Main {
          System.out.println(Arrays.toString(a));
 
       System.out.println("\nПри обычном сравнении через equals двумерный массив - это экземпляр Object[], а не int[][]");
-      if (Arrays.equals(array1, array2))
-         System.out.println("Массивы равны!");
-      else
-         System.out.println("Массивы не равны!");
+      if (Arrays.equals(array1, array2)) System.out.println("Массивы равны!");
+      else System.out.println("Массивы не равны!");
 
       System.out.println("\nПоэтому сравнивать нужно через deepEquals:");
-      if (Arrays.deepEquals(array1, array2))
-         System.out.println("Массивы равны!");
-      else
-         System.out.println("Массивы не равны!");
+      if (Arrays.deepEquals(array1, array2)) System.out.println("Массивы равны!");
+      else System.out.println("Массивы не равны!");
    }
 
    // Трёхмерные массивы. Пример 1
@@ -246,12 +236,7 @@ public class Main {
    private static void threeDimensionalArray_2() {
       System.out.println("\nТрехмерный массив. Пример 2");
 
-      int[][][] array =
-              {
-                      {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
-                      {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
-                      {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-              };
+      int[][][] array = {{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}};
 
 
       System.out.println("Трехмерный прямоугольный массив : ");
@@ -314,17 +299,7 @@ public class Main {
    // Четырёхмерные массивы. Пример 2
    private static void fourDimensionalArray_2() {
       System.out.println("\nЧетырехмерный массив. Пример 2");
-      int[][][][] array =
-              {
-                      {
-                              {{0, 1}, {2, 3}},
-                              {{4, 5}, {6, 7}}
-                      },
-                      {
-                              {{8, 9}, {10, 11}},
-                              {{12, 13}, {14, 0xF}}
-                      }
-              };
+      int[][][][] array = {{{{0, 1}, {2, 3}}, {{4, 5}, {6, 7}}}, {{{8, 9}, {10, 11}}, {{12, 13}, {14, 0xF}}}};
 
       System.out.println("Четырехмерный прямоугольный массив : ");
 
@@ -367,12 +342,7 @@ public class Main {
    // Зубчатые массивы. Пример 2
    private static void jaggedArray_2() {
       System.out.println("\nЗубчатые массивы. Пример 2");
-      int[][] jagged =
-              {
-                      {1, 2},
-                      {1, 2, 3, 4, 5},
-                      {1, 2, 3}
-              };
+      int[][] jagged = {{1, 2}, {1, 2, 3, 4, 5}, {1, 2, 3}};
 
       System.out.println("Зубчатый двумерный массив : ");
 
@@ -386,7 +356,15 @@ public class Main {
       }
    }
 
-   // Наполнение массива одинаковыми данными
+   /**
+    * Наполнение массива одинаковыми данными
+    *
+    * @param rows    количество строк
+    * @param columns количество столбцов
+    * @param number  число-заполнитель
+    *
+    * @return двумерный массив целых чисел, заполненный значением number
+    */
    private static int[][] ArrayFill(int rows, int columns, int number) {
       System.out.println("\nНаполнение массива одинаковыми данными");
 
@@ -450,11 +428,7 @@ public class Main {
 
    private static void quickSort() {
       System.out.println("\nСортировка двухмерного массива методом QuickSort");
-      int[][] num = {
-              {5, 4, 45, 12},
-              {7, 5, 8, 85},
-              {0, 6, 99, 50}
-      };
+      int[][] num = {{5, 4, 45, 12}, {7, 5, 8, 85}, {0, 6, 99, 50}};
 
       for (int row = 0; row < num.length; row++) {
          for (int column = 0; column < num[row].length; column++) {
@@ -557,8 +531,7 @@ public class Main {
       for (int bookCase = 0; bookCase < library.length; bookCase++) {
          for (int shelf = 0; shelf < library[bookCase].length; shelf++) {
             for (int book = 0; book < library[bookCase][shelf].length; book++) {
-               System.out.println("Шкаф: " + (bookCase + 1) + "-ый " +
-                       " Полка: " + (shelf + 1) + "-ая " + "Ячейка: " + (book + 1) + "-ая. Книга: " + library[bookCase][shelf][book]);
+               System.out.println("Шкаф: " + (bookCase + 1) + "-ый " + " Полка: " + (shelf + 1) + "-ая " + "Ячейка: " + (book + 1) + "-ая. Книга: " + library[bookCase][shelf][book]);
             }
          }
       }
@@ -687,8 +660,7 @@ public class Main {
 
       int indMax = 0;
       for (int i = 1; i < sumsRows.length; i++) {
-         if (sumsRows[i] > sumsRows[indMax])
-            indMax = i;
+         if (sumsRows[i] > sumsRows[indMax]) indMax = i;
       }
       System.out.println("Max in Rows= " + sumsRows[indMax] + ", at: " + indMax);
 
@@ -704,8 +676,7 @@ public class Main {
 
       int indMaxcols = 0;
       for (int i = 0; i < sumsCols.length; i++) {
-         if (sumsCols[i] > sumsCols[indMaxcols])
-            indMaxcols = i;
+         if (sumsCols[i] > sumsCols[indMaxcols]) indMaxcols = i;
       }
       System.out.println("Max in Cols= " + sumsCols[indMaxcols] + ", at: " + indMaxcols);
    }
@@ -795,14 +766,11 @@ public class Main {
       for (int column = 0; column < arr2D[0].length; column++) {
          for (int row = 0; row < arr2D.length; row++) {
             /* a */
-            if (arr2D[row][column] % 2 == 1)
-               sum[column] += arr2D[row][column];
+            if (arr2D[row][column] % 2 == 1) sum[column] += arr2D[row][column];
             /* b */
-            if (arr2D[row][column] > 0)
-               positivesQuantity[column]++;
+            if (arr2D[row][column] > 0) positivesQuantity[column]++;
             /* c */
-            if (arr2D[row][column] % a == 0 || arr2D[row][column] % b == 0)
-               a_or_b_modulo_Quantity[column]++;
+            if (arr2D[row][column] % a == 0 || arr2D[row][column] % b == 0) a_or_b_modulo_Quantity[column]++;
          }
       }
 
@@ -909,8 +877,7 @@ public class Main {
       System.out.println("Массив после перестановки : ");
       for (int i = 0; i < array.length; i++) {
          for (int j = 0; j < array[i].length; j++) {
-            if (array[i][j] < average)
-               array[i][j] = average;
+            if (array[i][j] < average) array[i][j] = average;
             // Выводим элемент массива
             System.out.print(array[i][j] + " ");
          }
@@ -937,8 +904,7 @@ public class Main {
             System.out.print(matrix[i][j] + "\t");
 
             // Сумма четных элементов
-            if (matrix[i][j] % 2 == 0)
-               sum += matrix[i][j];
+            if (matrix[i][j] % 2 == 0) sum += matrix[i][j];
          }
          System.out.println();
       }
