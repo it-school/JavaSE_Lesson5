@@ -437,16 +437,16 @@ public class Main {
          System.out.println();
       }
 
-      int rows = num.length;
-      int columns = num[0].length;
+      final int ROWS = num.length;
+      final int COLUMNS = num[0].length;
 
       // Сюда запишем наш двухмерный массив
-      int[] flat = new int[rows * columns];
+      int[] flat = new int[ROWS * COLUMNS];
 
       // Переписываем двухмерный массив в одномерный
       int counter = 0;
-      for (int row = 0; row < rows; row++) {
-         for (int column = 0; column < columns; column++) {
+      for (int row = 0; row < ROWS; row++) {
+         for (int column = 0; column < COLUMNS; column++) {
             flat[counter++] = num[row][column];
          }
       }
@@ -457,16 +457,20 @@ public class Main {
 
       // Переписываем одномерный массив в двухмерный
       counter = 0;
-      for (int row = 0; row < rows; row++) {
-         for (int column = 0; column < columns; column++) {
+      for (int row = 0; row < ROWS; row++) {
+         for (int column = 0; column < COLUMNS; column++) {
             num[row][column] = flat[counter++];
          }
       }
 
+      for (int i = 0; i < ROWS; i++) {
+         Arrays.sort(num[i]);
+      }
+
       System.out.println("Массив после сортировки : ");
 
-      for (int row = 0; row < rows; row++) {
-         for (int column = 0; column < columns; column++) {
+      for (int row = 0; row < ROWS; row++) {
+         for (int column = 0; column < COLUMNS; column++) {
             System.out.print(num[row][column] + "\t");
          }
          System.out.println();
